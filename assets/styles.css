@@ -61,23 +61,6 @@ img, .hero__image, .product-card__image, .story__image {
   overflow: hidden; 
 }
 
-
-
-/* .menu-toggle {
-  display: none;
-}
-
-.menu-toggle {
-  display: none; 
-  background: transparent !important;
-  border: none !important;
-  padding: 8px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  align-items: center;
-  justify-content: center;
-} */
-
 .menu-icon {
   width: 28px;
   height: 20px;

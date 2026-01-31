@@ -1,14 +1,8 @@
-// ===============================
-// menu.js — FINAL, STABLE VERSION
-// ===============================
-
-// ---------- helpers ----------
 function lockBodyScroll(lock) {
   document.documentElement.style.overflow = lock ? 'hidden' : '';
   document.body.style.overflow = lock ? 'hidden' : '';
 }
 
-// Определяем реальный скролл-контейнер
 function detectScrollRoot() {
   const candidates = [
     document.scrollingElement,
@@ -29,18 +23,16 @@ function detectScrollRoot() {
 
 let SCROLL_ROOT = detectScrollRoot();
 
-// ---------- MENU ----------
+
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
 
 if (menuToggle && mainNav) {
-  // защита от "залипших" классов
   menuToggle.classList.remove('active');
   mainNav.classList.remove('active');
   menuToggle.setAttribute('aria-expanded', 'false');
   lockBodyScroll(false);
 
-  // overlay
   let navOverlay = document.querySelector('.nav-overlay');
   if (!navOverlay) {
     navOverlay = document.createElement('div');
@@ -49,7 +41,7 @@ if (menuToggle && mainNav) {
   }
 
   function openMenu() {
-    if (window.innerWidth > 768) return; // не открываем на десктопе
+    if (window.innerWidth > 768) return;
     menuToggle.classList.add('active');
     mainNav.classList.add('active');
     navOverlay.classList.add('active');
@@ -72,28 +64,25 @@ if (menuToggle && mainNav) {
   menuToggle.addEventListener('click', toggleMenu);
   navOverlay.addEventListener('click', closeMenu);
 
-  // закрытие по клику на ссылку
   mainNav.querySelectorAll('.nav__link').forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) closeMenu();
     });
   });
 
-  // ESC
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mainNav.classList.contains('active')) {
       closeMenu();
     }
   });
 
-  // resize → гарантированно закрываем
   window.addEventListener('resize', () => {
     SCROLL_ROOT = detectScrollRoot();
     if (window.innerWidth > 768) closeMenu();
   });
 }
 
-// ---------- SCROLL TO TOP ----------
 const scrollTopButton = document.getElementById('scrollTop');
 
 if (scrollTopButton) {
@@ -131,7 +120,6 @@ if (scrollTopButton) {
     }
   });
 
-  // initial check
   updateScrollTopVisibility();
 
 
